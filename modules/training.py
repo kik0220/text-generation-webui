@@ -288,6 +288,9 @@ def do_train(lora_name: str, always_override: bool, save_steps: int, micro_batch
     actual_lr = float(learning_rate)
     model_type = type(shared.model).__name__
 
+    if model_type == 'JapaneseStableLMAlphaForCausalLM':
+        model_type = 'GPTNeoXForCausalLM'
+
     if model_type in MODEL_CLASSES:
         model_id = MODEL_CLASSES[model_type]
     else:
